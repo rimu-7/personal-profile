@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Apply the texture background */
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background-image: url('https://www.pexels.com/photo/black-sand-dunes-2387793/'); /* Link to your texture image */
+    background-repeat: repeat; /* Repeat the texture across the page */
+    background-size: cover; /* Optional: makes sure the image covers the entire area */
+    background-position: center center; /* Optional: centers the image */
+  }
+  
