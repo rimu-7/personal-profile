@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import git from '../../assets/github.png'
+import git2 from '../../assets/github-dark.png'
 
 const Showcase = () => {
   const [projects, setProjects] = useState([]);
@@ -8,6 +10,8 @@ const Showcase = () => {
   const [showScrollButton, setShowScrollButton] = useState(false); // State for scroll-to-top button
   const [showDropdown, setShowDropdown] = useState(false); // State for dropdown visibility
 
+
+  const [selectedImage, setSelectedImage] = useState(null);
   // Fetch projects
   useEffect(() => {
     setLoading(true);
@@ -94,12 +98,12 @@ const Showcase = () => {
       <div className="fixed top-1/2 left-8 hidden md:block z-10">
         <button
           onClick={toggleDropdown}
-          className="p-2 backdrop-blur-md rounded-sm bg-white/30 transition-all"
+          className="p-2 backdrop-blur-md rounded-sm bg-neutral-300 dark:bg-neutral-300 text-black hover:text-green-400  cursor-pointer transition-all"
         >
           Navigation
         </button>
         {showDropdown && (
-          <div className="mt-2 rounded-lg shadow-lg border-b-2 overflow-hidden w-max z-20 backdrop-blur-md bg-white/30 max-h-60 overflow-y-auto">
+          <div className="mt-2 rounded-lg shadow-lg  overflow-hidden w-max z-20 backdrop-blur-md bg-white/30 max-h-60 overflow-y-auto">
             {projects.map((project, index) => (
               <div
                 key={index}
@@ -107,6 +111,7 @@ const Showcase = () => {
                 className="px-4 py-2 cursor-pointer hover:text-green-400 duration-300 transition-all"
               >
                 {project.title}
+
               </div>
             ))}
           </div>
@@ -139,11 +144,30 @@ const Showcase = () => {
               transition={{ duration: 2 }}
               className="flex-shrink-0 max-w-[300px] lg:w-1/3"
             >
-              <img
-                src={project.image}
-                alt={project.title}
-                className="h-auto rounded-lg shadow-lg"
-              />
+
+
+              <div className="">
+                <img src={project.image} alt=""
+                  key={index}
+                  className="h-auto rounded-lg shadow-lg cursor-zoom-in"
+                  onClick={() => { setSelectedImage(project.image) }}
+                  title="click for full image"
+                />
+
+                {selectedImage && (
+                  <div className="fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-50"
+                    onClick={() => { setSelectedImage(null) }}
+
+                  >
+                    <div className="relative">
+                      <img src={selectedImage} alt=""
+                        className="max-w-full max-h-[90vh] rounded-2xl cursor-zoom-out" />
+                    </div>
+
+                  </div>
+                )}
+              </div>
+
             </motion.div>
 
             {/* Project Details */}
@@ -154,23 +178,30 @@ const Showcase = () => {
               className="lg:w-2/3"
             >
               <h6 className="mb-3 font-semibold text-xl">
-                <a
-                  href={project.githubrepo}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-500 hover:underline"
-                >
-                  {project.title}
-                </a>
-                {"  |  "}
-                <a
-                  href={project.liveDemo}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-green-500 hover:underline"
-                >
-                  Live Demo 🚀
-                </a>
+                <div className="flex items-center gap-2">
+                  <a
+                    href={project.githubrepo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline flex items-center gap-1"
+                    title={project.title.length > 30 ? project.title : ""}
+                  >
+                    {project.title.length > 30 ? project.title.slice(0, 25) + "..." : project.title}
+                    <img src={git2} alt="GitHub" className="w-5 h-5 dark:hidden" />
+                    <img src={git} alt="GitHub" className="w-5 h-5 hidden dark:block" />
+                  </a>
+
+                  <span className="text-gray-500">|</span>
+
+                  <a
+                    href={project.liveDemo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-green-500 hover:underline"
+                  >
+                    Live Demo 🚀
+                  </a>
+                </div>
               </h6>
 
               <p className="mb-4 text-neutral-500 text-justify">

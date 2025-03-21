@@ -27,7 +27,7 @@ const Navbar = () => {
 
           <button
             onClick={() => setDarkMode(!darkMode)}
-            className="px-4 py-2 ml-4 text-2xl rounded-md"
+            className="px-4 py-2 ml-4 text-2xl cursor-pointer rounded-md"
           >
             {darkMode ? "☀️" : "🌙"}
           </button>
