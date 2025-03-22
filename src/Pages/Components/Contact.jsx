@@ -40,48 +40,50 @@ const Contact = () => {
 
     return (
         <div className=''>
-            <form onSubmit={handleSubmit} className='p-4 block rounded-lg bg-background-secondary hover:bg-opacity-80 transition duration-300'>
-                <div className='flex flex-col'>
-                    <label>Name:</label>
-                    <input
-                        type="text"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        required
-                        className='border py-2 mb-3 rounded'
-                        placeholder=' Name'
-                    />
-                </div>
-                <div className='flex flex-col'> 
-                    <label>Email:</label>
-                    <input
-                        type="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        required
-                        className='border py-2 mb-3 rounded'
-                        placeholder=' Email'
-                    />
-                </div>
-                <div className='flex flex-col'>
-                    <label>Message:</label>
-                    <textarea
-                        name="message"
-                        value={formData.message}
-                        onChange={handleChange}
-                        required
-                        className='border py-2 mb-3 rounded'
-                        placeholder=' Write your message'
-                    />
-                </div>
-                <button type="submit" disabled={loading} className='flex flex-col py-2 mb-3 rounded bg-green-400 w-full cursor-pointer'>
-                    {loading ? 'Sending...' : 'Send'}
-                </button>
-            </form>
+            <div className="">
+                <form onSubmit={handleSubmit} className='p-4   rounded-lg bg-background-secondary hover:bg-opacity-80 transition duration-300'>
+                    <div className='flex flex-col'>
+                        <label>Name:</label>
+                        <input
+                            type="text"
+                            name="name"
+                            value={formData.name}
+                            onChange={handleChange}
+                            required
+                            className='border py-2 mb-3 rounded'
+                            placeholder=' Name'
+                        />
+                    </div>
+                    <div className='flex flex-col'>
+                        <label>Email:</label>
+                        <input
+                            type="email"
+                            name="email"
+                            value={formData.email}
+                            onChange={handleChange}
+                            required
+                            className='border py-2 mb-3 rounded'
+                            placeholder=' Email'
+                        />
+                    </div>
+                    <div className='flex flex-col'>
+                        <label>Message:</label>
+                        <textarea
+                            name="message"
+                            value={formData.message}
+                            onChange={handleChange}
+                            required
+                            className='border py-2 mb-3 rounded'
+                            placeholder=' Write your message'
+                        />
+                    </div>
+                    <button type="submit" disabled={loading} className='flex flex-col py-2 mb-3 rounded bg-green-400 w-full cursor-pointer'>
+                        {loading ? 'Sending...' : 'Send'}
+                    </button>
+                </form>
+            </div>
 
-            <ToastContainer /> 
+            <ToastContainer />
         </div>
     );
 };

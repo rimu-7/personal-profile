@@ -13,3 +13,22 @@ body {
     background-position: center center; /* Optional: centers the image */
   }
   
+
+  .custom-bullet {
+    list-style-type: none; /* Remove default bullet */
+    position: relative;
+  }
+  
+  .custom-bullet::before {
+    content: '';
+    position: absolute;
+    left: 19;
+    top: 50%;
+    margin: 20px;
+    transform: translateY(-50%);
+    width: 20px; /* Size of the white circle */
+    height: 20px;
+    background-color: white; /* White circle */
+    border-radius: 50%; /* Make it a circle */
+    border: 5px solid green; /* Green border around the circle */
+  }

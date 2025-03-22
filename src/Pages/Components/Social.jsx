@@ -37,7 +37,7 @@ const socialMedias = [
 
 const Social = () => {
    return (
-      <main className="min-h-screen bg-background text-primary py-25 accent-dots">
+      <main className="min-h-screen bg-background text-primary pb-20 pt-10 accent-dots">
          {/* Add corner glow effect */}
 
          {/* Add constellation pattern */}
@@ -46,7 +46,7 @@ const Social = () => {
             {/* Section: Get in Touch */}
             <section className="w-full animate-fadeIn">
                <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-highlight mb-2 sm:mb-3 pl-3 py-1">
-                  # Get in touch
+                  ## Get in touch
                </h1>
                <p className="text-xs sm:text-sm md:text-base text-primary pl-4">
                   My DMs are always open for any kind of collaboration or just to say hi!

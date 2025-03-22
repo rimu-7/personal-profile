@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import git from '../../assets/github.png'
 import git2 from '../../assets/github-dark.png'
+import { toast, ToastContainer } from "react-toastify";
 
 const Showcase = () => {
   const [projects, setProjects] = useState([]);
@@ -9,13 +10,36 @@ const Showcase = () => {
   const [error, setError] = useState(null);
   const [showScrollButton, setShowScrollButton] = useState(false); // State for scroll-to-top button
   const [showDropdown, setShowDropdown] = useState(false); // State for dropdown visibility
+  const [selectedImage, setSelectedImage] = useState(null); //image zoom in/out
 
 
-  const [selectedImage, setSelectedImage] = useState(null);
-  // Fetch projects
+  // // Fetch projects
+  // useEffect(() => {
+  //   setLoading(true);
+  //   fetch("https://personal-backend-nine.vercel.app/api/projects") // api url
+  //     .then((response) => {
+  //       if (!response.ok) {
+  //         throw new Error(`HTTP error! Status: ${response.status}`);
+  //       }
+  //       return response.json();
+  //     })
+  //     .then((data) => {
+  //       // Reverse the order of projects (reverse the array)
+  //       const reversedProjects = data.reverse();
+  //       setProjects(reversedProjects);
+  //       setError(null); // Clear error state if successful
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error fetching projects:", error);
+  //       setError("Failed to load projects. Please try again later.");
+  //     })
+  //     .finally(() => setLoading(false));
+  // }, []);
+
+
   useEffect(() => {
     setLoading(true);
-    fetch("https://personal-backend-nine.vercel.app/api/projects") // Update the URL if deployed
+    fetch("https://personal-backend-nine.vercel.app/api/projects") // API URL
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
@@ -23,14 +47,14 @@ const Showcase = () => {
         return response.json();
       })
       .then((data) => {
-        // Reverse the order of projects (reverse the array)
         const reversedProjects = data.reverse();
         setProjects(reversedProjects);
-        setError(null); // Clear error state if successful
+        setError(null);
       })
       .catch((error) => {
         console.error("Error fetching projects:", error);
-        setError("Failed to load projects. Please try again later.");
+        toast.error("Failed to load projects, try again later");
+        setError(error.message);
       })
       .finally(() => setLoading(false));
   }, []);
@@ -83,7 +107,7 @@ const Showcase = () => {
   const hasFeatures = projects.features && projects.features.length > 0;
 
   return (
-    <div className="min-h-screen w-full mt-30  md:w-[80%] mx-auto items-center justify-center px-4 overflow-x-hidden">
+    <div className="min-h-screen w-full md:w-[80%] mx-auto items-center justify-center px-4 overflow-x-hidden">
       {/* Floating Scroll-to-Top Button */}
       {showScrollButton && (
         <button
@@ -98,7 +122,7 @@ const Showcase = () => {
       <div className="fixed top-1/2 left-8 hidden md:block z-10">
         <button
           onClick={toggleDropdown}
-          className="p-2 backdrop-blur-md rounded-sm bg-neutral-300 dark:bg-neutral-300 text-black hover:text-green-400  cursor-pointer transition-all"
+          className="p-2 backdrop-blur-md rounded-sm bg-neutral-300 dark:bg-neutral-300 text-black hover:text-green-400 active:scale-90 duration-300  cursor-pointer transition-all"
         >
           Navigation
         </button>
@@ -234,6 +258,7 @@ const Showcase = () => {
           </div>
         ))}
       </div>
+      <ToastContainer />
     </div>
   );
 };

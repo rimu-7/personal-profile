@@ -6,9 +6,9 @@ import About from "../Pages/Components/About";
 import Showcase from "../Pages/Components/Showcase";
 import Contact from "../Pages/Components/Contact";
 import Social from "../Pages/Components/Social";
-// import Showcase from "../Pages/Showcase/Showcase";
-// import Contact from "../Pages/Contact/Contact";
-// import Skills from "../Pages/Skills/Skills";
+import Skills from "../Pages/Components/Skills";
+import Story from "../Pages/Components/Story";
+
 
 export const router = createBrowserRouter([
   {
@@ -36,6 +36,15 @@ export const router = createBrowserRouter([
         path: "/social",
         element: <Social />,
       },
+      {
+        path: "/skills",
+        element: <Skills />,
+      },
+      {
+        path: "/story",
+        element: <Story />,
+      },
+
     ],
   },
 ]);

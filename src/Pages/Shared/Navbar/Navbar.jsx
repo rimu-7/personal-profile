@@ -19,7 +19,7 @@ const Navbar = () => {
 
   return (
     <>
-      <div className="fixed top-0 left-0 right-0 bg-opacity-90 backdrop-blur-lg p-5 mb-2 w-full transition-transform duration-1000">
+      <div className="sticky top-0 left-0 right-0 bg-opacity-90 backdrop-blur-lg p-5 mb-2 w-full transition-transform duration-1000">
         <div className="flex items-center justify-between px-6 h-10 sm:px-1">
           <div className="flex-shrink-0">
             <Logo />
